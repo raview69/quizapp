@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
-// ignore: use_key_in_widget_constructors
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Quizzapp Flutter Ashelole'),
+      home: const MyHomePage(title: 'Quizz App Ashelole'),
     );
   }
 }
@@ -40,7 +41,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void onPressed() {
     setState(() {
-      questionsIndex = questionsIndex + 1;
+      if (questionsIndex == 2) {
+        questionsIndex = 0;
+      } else {
+        questionsIndex = questionsIndex + 1;
+      }
+
     });
     // ignore: avoid_print
     print(questionsIndex);
@@ -56,12 +62,24 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: [
             Text(
-              questions[0],
+              questions[questionsIndex],
             ),
             ElevatedButton(
               onPressed: onPressed,
               child: const Text(
-                'Answer',
+                'Answer 1',
+              ),
+            ),
+            ElevatedButton(
+              onPressed: onPressed,
+              child: const Text(
+                'Answer 2',
+              ),
+            ),
+            ElevatedButton(
+              onPressed: onPressed,
+              child: const Text(
+                'Answer 3',
               ),
             )
           ],
